@@ -40,12 +40,12 @@ Yes
 
 == Screenshots ==
 
-1. screenshot-0.png
-2. screenshot-1.png
-3. screenshot-2.png
-4. screenshot-3.png
-5. screenshot-4.png
-6. screenshot-5.png
+1. screenshot-1.png
+2. screenshot-2.png
+3. screenshot-3.png
+4. screenshot-4.png
+5. screenshot-5.png
+6. screenshot-6.png
 
 == Changelog ==
 
