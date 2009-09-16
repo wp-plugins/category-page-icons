@@ -108,7 +108,7 @@ if ( isset($action) ) {
 
 }
 
-if (!defined('WPDEV_CP_VERSION'))    define('WPDEV_CP_VERSION',  '0.1' );                                // 0.1
+if (!defined('WPDEV_CP_VERSION'))    define('WPDEV_CP_VERSION',  '0.2' );                                // 0.1
 if (!defined('WPDEV_CP_PUBLIC_VERSION'))    define('WPDEV_CP_PUBLIC_VERSION', 1 );                       // 0
 
 if (!defined('WP_CONTENT_DIR'))      define('WP_CONTENT_DIR', ABSPATH . 'wp-content');                   // Z:\home\test.wpdevelop.com\www/wp-content
