@@ -107,6 +107,17 @@
 
         $resized = image_resize( $full_path_file, $_REQUEST['size_w'], $_REQUEST["size_h"], $_REQUEST["crop"] );
         
+         if (! $resized ) {
+            //$_REQUEST['dir_icons'],  $_REQUEST['url_icons']
+            $previos_name = $file_name_only. '.'.$ext ; 
+            $renamed = $file_name_only. '-'.$_REQUEST['size_w'].'x'.  $_REQUEST["size_h"].'.'.$ext ; 
+            if (! copy($_REQUEST['dir_icons'] . '/' . $previos_name, $_REQUEST['dir_icons'] . '/' . $renamed) ) {
+                echo '<center><b> Cant rename file ' . $previos_name . ' to ' .  $renamed . '. <br>Its can make problem of showing resized thumb of image. <br>Please upload lager file.</b></center>';
+            }
+            
+         }
+
+
         $result = '<div style="pading:3px;"  id="div'. $file_name_only .'" >';
         if ($resized )
             $result .= '<img style="margin: 0px 10px 8px 5px;" align="absmiddle" src="'.  $_REQUEST['url_icons'].'/'. $file_name_only. '-'.$_REQUEST['size_w'].'x'.  $_REQUEST["size_h"].'.'.$ext  .'" title="'. $title .'" alt="'. $title .'" >';
@@ -328,7 +339,9 @@ if (!class_exists('wpdev_flash_uploader')) {
             for ($i = 1; $i < $count; ++$i) {
                if ($dirs[$i] !="") {
                     $path .= DIRECTORY_SEPARATOR . $dirs[$i];
-                    if (!is_dir($path) && !mkdir($path, $mode)) return false;
+                    if ( !is_dir($path) && ( strpos($_SERVER['DOCUMENT_ROOT'],$path)===false ) ) {
+                        if (!is_dir($path) && !mkdir($path, $mode)) return false;
+                    }
                    }
             }
             return true;

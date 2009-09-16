@@ -3,7 +3,7 @@
 Plugin Name: Category &amp; Page &nbsp; I c o n s
 Plugin URI: http://plugins.wpdevelop.com
 Description: Easy add icons to sidebar of categories and pages. All features are flexible and ajax based. (Wordpress customisation and plugins development &nbsp;&nbsp;&rArr;&nbsp;&nbsp; <a href="http://www.wpdevelop.com">www.wpdevelop.com</a>)
-Version: 0.1
+Version: 0.2
 Author: Dima Sereda
 Author URI: http://www.wpdevelop.com
 */
@@ -39,7 +39,8 @@ Author URI: http://www.wpdevelop.com
  Tested WordPress Versions: 2.8.3 - 2.8.4
 
 Change log:
-
+= 0.2 =
+ * Fixing of issue of not showing (sometimes) icons after upload at the page and category section. ( Its was because of uploading smaller images, then sizes setted at the settings page.
 = 0.1 =
  * Auto inserting icons into sidebar
  * Icons assigning to Pages
@@ -192,6 +193,7 @@ if (!class_exists('wpdev_compose')) {
         }
 
         //   F U N C T I O N S       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         // Adds Settings link to plugins settings
         function plugin_links($links, $file) {
 
@@ -228,6 +230,27 @@ if (!class_exists('wpdev_compose')) {
 
             $slct = false;
 
+
+
+            // Function for multi array sorting
+            function array_sort_by_property($array, $key) {
+               if(empty ($array))  return $array;
+
+               $final_sorted_array = array();
+               $key_array = array();
+
+               for ($i = 0 ; $i < count($array) ; $i++) {
+                   $key_array[$i] = $array[$i]->{$key};
+               }
+               asort($key_array);
+
+               foreach ($key_array as $key_num => $value) {
+                  array_push($final_sorted_array, $array[ $key_num] );
+               }
+               return $final_sorted_array;
+            }
+
+
             for ($i = 0 ; $i < count($top_menu) ; $i++) {
 
             // C H I L D S ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -239,17 +262,35 @@ if (!class_exists('wpdev_compose')) {
 
                     $categorys = get_categories('hide_empty=0&child_of='.$top_subm_id[1]);
                     $ii=0; $ic=count($categorys); $my_class ='';
+                    
+                    $categorys = array_sort_by_property($categorys,'term_order');
 
                     if ($ic > 0) {
+
+                        $perma_real = 'http://' .  $_SERVER['HTTP_HOST'] .$_SERVER['REQUEST_URI'] ;
+                        
+                        global $post;   // If showing right now POST so then get URLs from the Category.
+                        $cats_links = array();
+                        if ( get_permalink($post->ID) == $perma_real) {
+                            $cats_id = wp_get_post_categories($post->ID);
+                            foreach ($cats_id as $c_id) {
+                                $cats_links[]=get_category_link($c_id);
+                            }
+                        }
+ 
 
                         for ($ii = 0 ; $ii < $ic ; $ii++) { $category = $categorys[$ii]; $my_class = '';
 
                             $perma_load = get_category_link($category->term_id);
-                            $perma_real = 'http://' .  $_SERVER['HTTP_HOST'] .$_SERVER['REQUEST_URI'] ;
+                            
 
                             if ($ii == $ic-1) $my_class = ' class="last_submenu" ';
                             if (  str_replace('/','',$perma_load) == str_replace('/','',$perma_real)  ) { $my_class = ' class="selected" '; $slct = $i; }
-
+                            else { // Check URLS according posts if its showing now, compare real URL to urls of categories where can be post
+                                foreach ($cats_links as $perma_real) {
+                                    if (  str_replace('/','',$perma_load) == str_replace('/','',$perma_real)  ) { $my_class = ' class="selected" '; $slct = $i; }
+                                }
+                            }
                             $my_childs[] =array(
                                 'class' => $my_class,
                                 'link'  => get_category_link($category->term_id),
@@ -259,9 +300,12 @@ if (!class_exists('wpdev_compose')) {
                         }
                     }
 
-                } elseif($top_subm_id[0] == 'page') { // P A G E S  S U B M E N U  ///////////////////////////////////////////////////////
+                } elseif( ($top_subm_id[0] == 'page') || ($top_subm_id[0] == 'pages') ) { // P A G E S  S U B M E N U  ///////////////////////////////////////////////////////
 
-                    $pages = get_pages( array('child_of' => $top_subm_id[1], 'sort_column' => 'menu_order') );
+                    if ($top_subm_id[0] == 'page')
+                        $pages = get_pages( array('child_of' => $top_subm_id[1], 'sort_column' => 'menu_order') );
+                    else
+                        $pages = get_pages( array('child_of' => -1, 'sort_column' => 'menu_order', 'include' =>  $top_subm_id[1]) );
 
                     $ii=0; $ic=count($pages); $my_class ='';
 
@@ -310,7 +354,7 @@ if (!class_exists('wpdev_compose')) {
 
             $this->menu = $result;
 
-            //debuge(  $result );
+            //debugebg(  $result , true );
             return $result;
 
         }
@@ -332,7 +376,10 @@ if (!class_exists('wpdev_compose')) {
             for ($i = 1; $i < $count; ++$i) {
                 if ($dirs[$i] !="") {
                     $path .= DIRECTORY_SEPARATOR . $dirs[$i];
-                    if (!is_dir($path) && !mkdir($path, $mode)) return false;
+                    if ( !is_dir($path) && ( strpos($_SERVER['DOCUMENT_ROOT'],$path)===false ) ) {
+                        if (!is_dir($path) && !mkdir($path, $mode)) return false;
+                    }
+
                 }
             }
             return true;
@@ -512,6 +559,8 @@ if (!class_exists('wpdev_compose')) {
                             <a href="categories.php"><?php _e('Categories'); ?></a>  -></div>
                         <div style="margin:0px;margin-top:12px;font-size:12px;font-weight:bold;">
                             <a href="edit-pages.php"><?php _e('Pages'); ?></a>  -></div>
+                        <div style="margin:0px;margin-top:12px;font-size:12px;font-weight:bold;">
+                            <a href="edit-pages.php"><?php _e('Pages ID'); ?></a>  -></div>
                     </div>
                                 <?php
                                 $top_menu =       explode('|', get_option('wpdev_mc_menu_content'));
@@ -535,8 +584,12 @@ if (!class_exists('wpdev_compose')) {
                                         if ($sb[0] == 'page') $slctd = $sb[1];
                                         else $slctd = 0;
                                         wp_dropdown_pages( array( 'selected' => $slctd,  'name' => 'page_' . $i, 'orderby' => 'name', 'hierarchical' => 1, 'show_option_none' => __(' '), 'tab_index' => 4 ) ); ?>
-                        <!--br>
-                        <input type="text" value="<?php echo $i; ?>" name="menulink_<?php echo $i; ?>" id="menulink_<?php echo $i; ?>" -->
+
+                        <br>            <?php
+                                        if ($sb[0] == 'pages') $slctd = $sb[1];
+                                        else $slctd = ''; ?>
+
+                                         <input type="text" value="<?php echo $slctd; ?>" name="pages_<?php echo $i; ?>" id="pages_<?php echo $i; ?>" >
                     </div>
                                 <?php
                                 }
@@ -594,6 +647,7 @@ if (!class_exists('wpdev_compose')) {
                 for ($i = 1 ; $i <= $_POST['submenu_count'] ; $i++) {
 
                     if ( $_POST['page_'.$i] != '' )      $sub_save .= 'page=' . $_POST['page_'.$i];
+                    elseif ( $_POST['pages_'.$i] != '' ) $sub_save .= 'pages=' . $_POST['pages_'.$i];
                     elseif ( $_POST['cat_'.$i] != '-1' ) $sub_save .= 'cat=' . $_POST['cat_'.$i];
 
                     $sub_save .= '|';
@@ -952,34 +1006,46 @@ jQuery('div.wrap h2').html('<?php _e('Assigning icons to pages'); ?>');
                 $last_string = $value;
             }
 
-            // User Function for multi array sorting
-            function array_sort_func($a,$b=NULL) {
-                static $keys;
-                if($b===NULL) return $keys=$a;
-                foreach($keys as $k) {
-                    if(@$k[0]=='!') {
-                        $k=substr($k,1);
-                        if(@$a[$k]!==@$b[$k]) {
-                            return strcmp(@$b[$k],@$a[$k]);
-                        }
-                    }
-                    else if(@$a[$k]!==@$b[$k]) {
-                            return strcmp(@$a[$k],@$b[$k]);
-                        }
-                }
-                return 0;
-            }
-            // Function for multi array sorting
-            function array_sort(&$array) {
-                if(!$array) return $keys;
-                $keys=func_get_args();
-                array_shift($keys);
-                array_sort_func($keys);
-                usort($array,"array_sort_func");
-            }
-            //Sort here array by 2 collumn if first collumn equal then sort by other collumn
-            array_sort($new_sort_fin_array,'order','sub_order');
 
+            // Function for multi array sorting
+            function array_sort_by_2keys($array, $key, $key2) {
+               if(empty ($array))  return $array;
+
+               $final_sorted_array =  $key_array = $key_array_real = $final_sorted_array_keys = array();
+                
+
+               for ($i = 0 ; $i < count($array) ; $i++) {
+                   $key_array[$i] = $array[$i][$key];
+               }
+               asort($key_array); // Sort primary keys
+
+               for ($i = 0 ; $i < count($array) ; $i++) {
+                   $key2_array[$i] = $array[$i][$key2];
+               }
+               asort($key2_array); // sort secondary keys
+
+               foreach ($array as $key_num => $value) {
+                  $final_sorted_array_keys[ $key_array[$key_num]  ][ $key2_array[$key_num] ] = $key_num;
+               } // create multi array with 2 keys
+               
+               ksort($final_sorted_array_keys); // sort key array by 1st key
+               foreach ($final_sorted_array_keys as $key_num => $value) {
+                   ksort($final_sorted_array_keys[$key_num]);
+               }  // sort key array by 2nd key
+
+               foreach ($final_sorted_array_keys as $key_num => $value) {
+                   foreach ($value as $key_num2 => $value_real) {
+                       array_push($key_array_real, $value_real);
+                   }
+               } // create one array with indeses innormal sort order
+
+               foreach ($key_array_real as $key_num => $value) { // create sorted array
+                  array_push($final_sorted_array, $array[ $value] );
+               }
+                return $final_sorted_array;
+            }
+
+            $new_sort_fin_array = array_sort_by_2keys($new_sort_fin_array,'order','sub_order');
 
             // create here Final ordered array by parents and by sort order
             $pages_fin = array();
@@ -1233,33 +1299,48 @@ jQuery('div.wrap h2').html('<?php _e('Assigning icons to pages'); ?>');
                 $last_string = $value;
             }
 
-            // User Function for multi array sorting
-            function array_sort_func($a,$b=NULL) {
-                static $keys;
-                if($b===NULL) return $keys=$a;
-                foreach($keys as $k) {
-                    if(@$k[0]=='!') {
-                        $k=substr($k,1);
-                        if(@$a[$k]!==@$b[$k]) {
-                            return strcmp(@$b[$k],@$a[$k]);
-                        }
-                    }
-                    else if(@$a[$k]!==@$b[$k]) {
-                            return strcmp(@$a[$k],@$b[$k]);
-                        }
-                }
-                return 0;
-            }
+
             // Function for multi array sorting
-            function array_sort(&$array) {
-                if(!$array) return $keys;
-                $keys=func_get_args();
-                array_shift($keys);
-                array_sort_func($keys);
-                usort($array,"array_sort_func");
+            function array_sort_by_2keys($array, $key, $key2) {
+               if(empty ($array))  return $array;
+
+               $final_sorted_array =  $key_array = $key_array_real = $final_sorted_array_keys = array();
+
+
+               for ($i = 0 ; $i < count($array) ; $i++) {
+                   $key_array[$i] = $array[$i][$key];
+               }
+               asort($key_array); // Sort primary keys
+
+               for ($i = 0 ; $i < count($array) ; $i++) {
+                   $key2_array[$i] = $array[$i][$key2];
+               }
+               asort($key2_array); // sort secondary keys
+
+               foreach ($array as $key_num => $value) {
+                  $final_sorted_array_keys[ $key_array[$key_num]  ][ $key2_array[$key_num] ] = $key_num;
+               } // create multi array with 2 keys
+
+               ksort($final_sorted_array_keys); // sort key array by 1st key
+               foreach ($final_sorted_array_keys as $key_num => $value) {
+                   ksort($final_sorted_array_keys[$key_num]);
+               }  // sort key array by 2nd key
+
+               foreach ($final_sorted_array_keys as $key_num => $value) {
+                   foreach ($value as $key_num2 => $value_real) {
+                       array_push($key_array_real, $value_real);
+                   }
+               } // create one array with indeses innormal sort order
+
+               foreach ($key_array_real as $key_num => $value) { // create sorted array
+                  array_push($final_sorted_array, $array[ $value] );
+               }
+                return $final_sorted_array;
             }
-            //Sort here array by 2 collumn if first collumn equal then sort by other collumn
-            array_sort($new_sort_fin_array,'order','sub_order');
+
+            $new_sort_fin_array = array_sort_by_2keys($new_sort_fin_array,'order','sub_order');
+
+
 
             // create here Final ordered array by parents and by sort order
             $cats_fin = array();
@@ -1516,7 +1597,7 @@ jQuery('div.wrap h2').html('<?php _e('Assigning icons to pages'); ?>');
                                 <tr class="first">
                                     <td class="first b">Plugin page</td>
                                     <td class="t"><?php _e("official plugin page"); ?></td>
-                                    <td class="t options"><a href="http://plugins.wpdevelop.com/" target="_blank"><?php _e("visit"); ?></a></td>
+                                    <td class="t options"><a href="http://wpdevelop.com/wp-plugins/category-page-icons/" target="_blank"><?php _e("visit"); ?></a></td>
                                 </tr>
                                 <tr>
                                     <td class="first b">WordPress Extend</td>
@@ -1745,4 +1826,6 @@ jQuery('div.wrap h2').html('<?php _e('Assigning icons to pages'); ?>');
         $wpdev_bk = new wpdev_compose();
 
 
+
+ 
 ?>

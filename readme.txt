@@ -4,7 +4,7 @@ Donate link: http://www.wpdevelop.com/
 Tags: icons, icon, category, categories, page, pages, category icon, category icons,  categories icon, categories icons, page icon, pages icon, page icons, pages icons, image, images, ajax, add images, add icons, post, posts, list, lists, manage, plugin, plugins, sidebar, horizontally, vertically, widget, admin, photo, photos, formatting
 Requires at least: 2.7
 Tested up to: 2.8.4
-Stable tag: 0.1
+Stable tag: 0.2
 
 Easy add icons to sidebar of categories and pages. All features are flexible and ajax based.
 == Description ==
@@ -14,7 +14,7 @@ Using this plugin, you can add icons (images) to sidebar of your site or blog in
 
 Related Links:
 
-* <a href="http://plugins.wpdevelop.com/category-page-icons" title="Category and page icons">Plugin Homepage</a>
+* <a href="http://wpdevelop.com/wp-plugins/category-page-icons/" title="Category and page icons">Plugin Homepage</a>
 * <a href="http://wpdevelop.com" title="Custom WordPress Plugins Development">Support and Developments of WordPress Pugins</a>
 
 == Installation ==
@@ -40,15 +40,16 @@ Yes
 
 == Screenshots ==
 
-1. screenshot-1.png
-2. screenshot-2.png
-3. screenshot-3.png
-4. screenshot-4.png
-5. screenshot-5.png
-6. screenshot-6.png
+1. screenshot-0.png
+2. screenshot-1.png
+3. screenshot-2.png
+4. screenshot-3.png
+5. screenshot-4.png
+6. screenshot-5.png
 
 == Changelog ==
-
+= 0.2 =
+ * Fixing of issue of not showing (sometimes) icons after upload at the page and category section. ( Its was because of uploading smaller images, then sizes setted at the settings page.
 = 0.1 =
  * Auto inserting icons into sidebar
  * Icons assigning to Pages
