@@ -3,7 +3,7 @@
 Plugin Name: Category &amp; Page &nbsp; I c o n s
 Plugin URI: http://wpdevelop.com/wp-plugins/category-page-icons/
 Description: Easy add icons to sidebar of categories and pages. All features are flexible and ajax based. (Wordpress customisation and plugins development &nbsp;&nbsp;&rArr;&nbsp;&nbsp; <a href="http://www.wpdevelop.com">www.wpdevelop.com</a>)
-Version: 0.2
+Version: 0.3
 Author: Dima Sereda
 Author URI: http://www.wpdevelop.com
 */
@@ -111,7 +111,7 @@ if ( isset($action) ) {
 }
 
 if (!defined('WPDEV_CP_VERSION'))    define('WPDEV_CP_VERSION',  '0.3' );                                // 0.1
-if (!defined('WPDEV_CP_PUBLIC_VERSION'))    define('WPDEV_CP_PUBLIC_VERSION', 1 );                       // 0
+if (!defined('WPDEV_CP_PUBLIC_VERSION'))    define('WPDEV_CP_PUBLIC_VERSION', 0 );                       // 0
 
 if (!defined('WP_CONTENT_DIR'))      define('WP_CONTENT_DIR', ABSPATH . 'wp-content');                   // Z:\home\test.wpdevelop.com\www/wp-content
 if (!defined('WP_CONTENT_URL'))      define('WP_CONTENT_URL', get_option('siteurl') . '/wp-content');    // http://test.wpdevelop.com/wp-content
