@@ -111,7 +111,7 @@ if ( isset($action) ) {
 }
 
 if (!defined('WPDEV_CP_VERSION'))    define('WPDEV_CP_VERSION',  '0.3' );                                // 0.1
-if (!defined('WPDEV_CP_PUBLIC_VERSION'))    define('WPDEV_CP_PUBLIC_VERSION', 0 );                       // 0
+if (!defined('WPDEV_CP_PUBLIC_VERSION'))    define('WPDEV_CP_PUBLIC_VERSION', 1 );                       // 0
 
 if (!defined('WP_CONTENT_DIR'))      define('WP_CONTENT_DIR', ABSPATH . 'wp-content');                   // Z:\home\test.wpdevelop.com\www/wp-content
 if (!defined('WP_CONTENT_URL'))      define('WP_CONTENT_URL', get_option('siteurl') . '/wp-content');    // http://test.wpdevelop.com/wp-content
