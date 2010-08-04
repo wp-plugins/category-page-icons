@@ -3,7 +3,7 @@
 Plugin Name: Category &amp; Page &nbsp; I c o n s
 Plugin URI: http://wpdevelop.com/wp-plugins/category-page-icons/
 Description: Easy add icons to sidebar of categories and pages. All features are flexible and ajax based. (Wordpress customisation and plugins development &nbsp;&nbsp;&rArr;&nbsp;&nbsp; <a href="http://www.wpdevelop.com">www.wpdevelop.com</a>)
-Version: 0.6
+Version: 0.7
 Author: wpdevelop
 Author URI: http://www.wpdevelop.com
 */
@@ -33,6 +33,10 @@ Plugin Name: Category &amp; Page &nbsp; I c o n s
 
 /*
  Tested WordPress Versions: 2.8.3 - 2.8.4
+TODO:
+ * This is the error Choose Icons to upload: <input id="cancel-upload" disabled="disabled" onclick="javscript:swfu.cancelQueue();" type="button" value="
+       * I use WP 2.7.1. Fatal error: Call to undefined function esc_attr_e() in /home/garagebl/domains/garageblog.com/public_html/wp-content/plugins/category-page-icons/include/wpdev-flash-uploader.php on line 312
+ * I like you plugin much, but is it possible that it does not work with multi-language plugin WPML? Cause my german (original) pages work fine with the icons but I can’t bind them to the english page titles.
 
 Change log:
 = 0.6 =
@@ -2165,11 +2169,19 @@ if (!class_exists('wpdev_compose')) {
             add_option('wpdev_mc_icon_size_w' , '28');
             add_option('wpdev_mc_icon_size_h' , '28');
             add_option('wpdev_mc_icon_crop'   , 'On');
-            add_option('wpdev_mc_icon_dir'    ,  esc_attr(str_replace(ABSPATH, '', get_option('upload_path')))  . '/icons'); /**/
+            $my_upload_path = get_option('upload_path');
+            if ($my_upload_path == '') $my_upload_path = 'wp-content/uploads';
+            add_option('wpdev_mc_icon_dir'    ,  esc_attr(str_replace(ABSPATH, '', $my_upload_path ))  . '/icons'); /**/
             add_option( 'wpdev_mc_is_delete_on_deactive' ,'Off'); // check
             add_option( 'wpdev_mc_copyright','On' );              // check
 
             make_cp_action('wpdev_mc_activation');
+
+
+            $recheck = get_option('wpdev_mc_icon_dir');
+            if ($recheck == '/icons') {
+                add_option('wpdev_mc_icon_dir'    , 'wp-content/uploads/icons'); /**/
+            }
         }
 
         // Deactivate
@@ -2221,7 +2233,9 @@ if (!class_exists('wpdev_compose')) {
     }
 }
 
-$wpdev_bk = new wpdev_compose();
+//debuge(dirname(__FILE__) . '/', ABSPATH);die;
+
+$wpdev_mc = new wpdev_compose();
 
 
 
