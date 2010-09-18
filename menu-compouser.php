@@ -3,7 +3,7 @@
 Plugin Name: Category &amp; Page &nbsp; I c o n s
 Plugin URI: http://wpdevelop.com/wp-plugins/category-page-icons/
 Description: Easy add icons to sidebar of categories and pages. All features are flexible and ajax based. (Wordpress customisation and plugins development &nbsp;&nbsp;&rArr;&nbsp;&nbsp; <a href="http://www.wpdevelop.com">www.wpdevelop.com</a>)
-Version: 0.7
+Version: 0.8
 Author: wpdevelop
 Author URI: http://www.wpdevelop.com
 */
@@ -39,6 +39,13 @@ TODO:
  * I like you plugin much, but is it possible that it does not work with multi-language plugin WPML? Cause my german (original) pages work fine with the icons but I can’t bind them to the english page titles.
 
 Change log:
+= 0.8 =
+ * Showing all icons from apload icosn folder, do not apply size icons filter now.
+ * Fixing HTTP Error, during upload icons, when icons size smaller, then width and height at settings.
+
+= 0.7 =
+ * Fixing compatibility with WordPress 3.0.1 If you have problems of showing icons. Please go to the icons settings page and check this field: "Store uploads of icons in this folder:" its have to be like this wp-content/uploads/icons but not /icons
+
 = 0.6 =
  * Fixing error: Call to undefined function apply_bk_filter() in category-page-icons/menu-compouser.php on line 1360
 
@@ -1094,9 +1101,14 @@ if (!class_exists('wpdev_compose')) {
                                 $file_name =   $file;
                             }
 
+                            $imagesize_original = getimagesize( $this->icons_url. '/' . $file  );
+
+                            
+
                             $output .=  '<td style="text-align:center;vertical-align:middle;height:'.  (get_option( 'wpdev_mc_icon_size_h' ) +7 ).'px;">'.$i.'</td>'.
                                     '<td style="vertical-align:middle;text-align:center" align="center">' .
                                     $cur_icon .
+                              '</br><span style="font-size:10px;">'  . $imagesize_original[0] . 'x'. $imagesize_original[1] . 'px</span>' .
                                     '<input value="'.$this->icons_url. '/' . $file .'" id="current_icon'. $file.'" name="current_icon'.$file.'" type="hidden">
                                     </td>'.
                                     '<td style="vertical-align:middle;font-weight:normal;">'. $file_name . '</td>';
@@ -1132,6 +1144,7 @@ if (!class_exists('wpdev_compose')) {
 
             if(get_option( 'wpdev_mc_icon_crop' ) == 'On') $wpdev_mc_icon_crop = 1;
             else                                           $wpdev_mc_icon_crop = 0;
+
             $this->flash_uploader->set_sizes( get_option( 'wpdev_mc_icon_size_w' ), get_option( 'wpdev_mc_icon_size_h' ),  $wpdev_mc_icon_crop );
 
             $this->flash_uploader->upload_form();
@@ -1789,7 +1802,10 @@ if (!class_exists('wpdev_compose')) {
 
                 // if $file isn't this directory or its parent,
                 // add it to the results array
-                if ($file != '.' && $file != '..' && ( strpos($file, '-'. get_option( 'wpdev_mc_icon_size_w' ) . 'x' .  get_option( 'wpdev_mc_icon_size_h' ) ) !== false ) )
+                if (  $file != '.'  &&
+                      $file != '..'
+                      //&& ( strpos($file, '-'. get_option( 'wpdev_mc_icon_size_w' ) . 'x' .  get_option( 'wpdev_mc_icon_size_h' ) ) !== false )
+                    )
                     $results[] = $file;
             }
 

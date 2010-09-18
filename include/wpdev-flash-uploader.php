@@ -111,8 +111,21 @@
 	$file_name_only = trim( substr( $name_parts_real['basename'], 0, -(1 + strlen($ext)) ) );
  
 
+        $imagesize_original = getimagesize( $full_path_file );
+
+        //debuge($imagesize_original, '$imagesize_original');
+        //debuge($_REQUEST['size_w'], $_REQUEST["size_h"], $_REQUEST["crop"]);
+
+        if ( ( $imagesize_original[0] < $_REQUEST['size_w']) || ( $imagesize_original[1] < $_REQUEST['size_h']) ) {
+            $_REQUEST['size_w'] = $imagesize_original[0]-1;
+            $_REQUEST["size_h"] = $imagesize_original[1]-1;
+        }
+         //debuge($_REQUEST['size_w'], $_REQUEST["size_h"], $_REQUEST["crop"]);
+
         $resized = image_resize( $full_path_file, $_REQUEST['size_w'], $_REQUEST["size_h"], $_REQUEST["crop"] );
-        
+
+        //debuge($resized);
+
          if (! $resized ) {
             //$_REQUEST['dir_icons'],  $_REQUEST['url_icons']
             $previos_name = $file_name_only. '.'.$ext ; 

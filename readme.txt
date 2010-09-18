@@ -4,7 +4,7 @@ Donate link: http://www.wpdevelop.com/
 Tags: icons, icon, category, categories, page, pages, category icon, category icons,  categories icon, categories icons, page icon, pages icon, page icons, pages icons, image, images, ajax, add images, add icons, post, posts, list, lists, manage, plugin, plugins, sidebar, horizontally, vertically, widget, admin, photo, photos, formatting
 Requires at least: 2.7
 Tested up to: 3.0.1
-Stable tag: 0.7
+Stable tag: 0.8
 
 Easy add icons to sidebar of categories and pages. All features are flexible and ajax based.
 == Description ==
@@ -48,8 +48,12 @@ Yes
 6. screenshot-5.png
 
 == Changelog ==
+= 0.8 =
+ * Showing all icons from apload icosn folder, do not apply size icons filter now.
+ * Fixing HTTP Error, during upload icons, when icons size smaller, then width and height at settings.
+
 = 0.7 =
- * Fixing compatibility with WordPress 3.0.1 If you have problems of showing icons. Please go to the icons settings page and check this field: “Store uploads of icons in this folder:” its have to be like this wp-content/uploads/icons but not /icons
+ * Fixing compatibility with WordPress 3.0.1 If you have problems of showing icons. Please go to the icons settings page and check this field: ï¿½Store uploads of icons in this folder:ï¿½ its have to be like this wp-content/uploads/icons but not /icons
 
 = 0.6 =
  * Fixing error: Call to undefined function apply_bk_filter() in category-page-icons/menu-compouser.php on line 1360
@@ -74,8 +78,8 @@ Yes
  * Ajax deleting images
 
 == Upgrade Notice ==
-= 0.5 =
-Fixing issue of not showing progress bar and compatibility with WordPress 2.9 - 2.9.1. New pro version (Position of icons at top, bottom , right or left side according to titles of pages or categories.).
+= 0.8 =
+ Showing all icons from apload icosn folder, do not apply size icons filter now.  Fixing HTTP Error, during upload icons, when icons size smaller, then width and height at settings.
 
 
 == Arbitrary section ==
