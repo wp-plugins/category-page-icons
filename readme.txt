@@ -1,7 +1,7 @@
-=== Category and Page Icons ===
+﻿=== Category and Page Icons ===
 Contributors: wpdevelop
 Donate link: http://www.wpdevelop.com/
-Tags: icons, icon, category, categories, page, pages, category icon, category icons,  categories icon, categories icons, page icon, pages icon, page icons, pages icons, image, images, ajax, add images, add icons, post, posts, list, lists, manage, plugin, plugins, sidebar, horizontally, vertically, widget, admin, photo, photos, formatting
+Tags: category icons, page icons, icons, pictures, category, page, pages, sidebar, widgets, widget icons, menu icons
 Requires at least: 2.7
 Tested up to: 3.0.1
 Stable tag: 0.8
