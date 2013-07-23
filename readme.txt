@@ -3,7 +3,7 @@ Contributors: wpdevelop
 Donate link: http://www.wpdevelop.com/
 Tags: category icons, page icons, icons, pictures, category, page, pages, sidebar, widgets, widget icons, menu icons
 Requires at least: 2.7
-Tested up to: 3.0.1
+Tested up to: 3.5.2
 Stable tag: 0.8
 
 Easy add icons to sidebar of categories and pages. All features are flexible and ajax based.
