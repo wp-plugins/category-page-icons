@@ -4,7 +4,7 @@ Donate link: http://www.wpdevelop.com/
 Tags: category icons, page icons, icons, pictures, category, page, pages, sidebar, widgets, widget icons, menu icons
 Requires at least: 2.7
 Tested up to: 3.5.2
-Stable tag: 0.8
+Stable tag: 0.8.1
 
 Easy add icons to sidebar of categories and pages. All features are flexible and ajax based.
 == Description ==
@@ -48,6 +48,8 @@ Yes
 6. screenshot-5.png
 
 == Changelog ==
+= 0.8.1 = 
+ * Description  fix 
 = 0.8 =
  * Showing all icons from apload icosn folder, do not apply size icons filter now.
  * Fixing HTTP Error, during upload icons, when icons size smaller, then width and height at settings.
