@@ -1,10 +1,10 @@
 ﻿=== Category and Page Icons ===
 Contributors: wpdevelop
-Donate link: http://www.wpdevelop.com/
+Donate link: http://www.wp-premiumplugins.com/category-page-icons/
 Tags: category icons, page icons, icons, pictures, category, page, pages, sidebar, widgets, widget icons, menu icons
 Requires at least: 2.7
-Tested up to: 3.5.2
-Stable tag: 0.8.1
+Tested up to: 3.6.1
+Stable tag: 0.9
 
 Easy add icons to sidebar of categories and pages. All features are flexible and ajax based.
 == Description ==
@@ -14,8 +14,8 @@ Using this plugin, you can add icons (images) to sidebar of your site or blog in
 
 Related Links:
 
-* <a href="http://wpdevelop.com/wp-plugins/category-page-icons/" title="Category and page icons">Plugin Homepage</a>
-* <a href="http://wpdevelop.com" title="Custom WordPress Plugins Development">Support and Developments of WordPress Pugins</a>
+* <a href="http://www.wp-premiumplugins.com/category-page-icons/" title="Category and page icons">Plugin Homepage</a>
+* <a href="http://www.wp-premiumplugins.com/contact/" title="Custom WordPress Plugins Development">Support and Developments of WordPress Pugins</a>
 
 == Installation ==
 
@@ -48,6 +48,8 @@ Yes
 6. screenshot-5.png
 
 == Changelog ==
+= 0.9 =
+ * Fixed issue of not showing Upload button.
 = 0.8.1 = 
  * Description  fix 
 = 0.8 =
@@ -80,9 +82,8 @@ Yes
  * Ajax deleting images
 
 == Upgrade Notice ==
-= 0.8 =
- Showing all icons from apload icosn folder, do not apply size icons filter now.  Fixing HTTP Error, during upload icons, when icons size smaller, then width and height at settings.
-
+= 0.9 =
+Fixed issue of showing Upload button.
 
 == Arbitrary section ==
 

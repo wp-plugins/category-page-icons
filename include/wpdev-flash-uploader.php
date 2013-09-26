@@ -274,11 +274,13 @@ if (!class_exists('wpdev_flash_uploader')) {
                         var swfu;
                         SWFUpload.onload = function() {
                             var settings = {
-                                    button_text: '<span class="button"><?php _e('Select Files'); ?></span>',
-                                    button_text_style: '.button { text-align: center; font-weight: bold; font-family:"Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif; }',
-                                    button_height: "24",
-                                    button_width: "132",
-                                    button_text_top_padding: 2,
+                                    button_text: "<?php _e('Select Files'); ?>",
+                                    //button_text_style: '.button-upload {text-align: center; font-weight: bold; font-family:"Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;}',
+			button_width: 103,
+			button_height: 24,
+			button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+			button_cursor: SWFUpload.CURSOR.HAND,
+                                    button_text_top_padding: 1,
                                     button_image_url: '<?php echo includes_url('images/upload.png'); ?>',
                                     button_placeholder_id: "flash-browse-button",
                                     upload_url : "<?php echo esc_attr( $flash_action_url ); ?>",
@@ -320,10 +322,9 @@ if (!class_exists('wpdev_flash_uploader')) {
                         </script>
 
                         <div id="flash-upload-ui" style="padding:10px 25px;">
-                                <?php _e( $this->sentence ); ?>:
-                                <div id="flash-browse-button"></div>
-                                <span><input id="cancel-upload" disabled="disabled" onclick="javscript:swfu.cancelQueue();" type="button" value="<?php esc_attr_e('Cancel Upload'); ?>" class="button" /></span>
-                        </div>
+                                <div style="float:left;"><?php _e( $this->sentence ); ?>:</div>
+                                <div style="width: 87px; cursor: default; margin: -3px 10px;float:left;" class="button"><div id="flash-browse-button"></div></div>            <!--div style="margin: -3px 0px;float:left;"><input id="cancel-upload" disabled="disabled" onclick="javscript:swfu.cancelQueue();" type="button" value="<?php esc_attr_e('Cancel Upload'); ?>" class="button" /></div-->
+                        </div><div style="clear:both;width:100%;float:none;margin-bottom: 15px;"></div>
                         <div id="media-items"> </div>
 
                         <script type="text/javascript">

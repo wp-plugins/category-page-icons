@@ -1,20 +1,21 @@
 <?php
 /*
 Plugin Name: Category &amp; Page &nbsp; I c o n s
-Plugin URI: http://wpdevelop.com/wp-plugins/category-page-icons/
+Plugin URI: http://wp-premiumplugins.com/category-page-icons/
 Description: Easy add icons to sidebar of categories and pages. All features are flexible and ajax based. (Wordpress customisation and plugins development &nbsp;&nbsp;&rArr;&nbsp;&nbsp; <a href="http://www.wpdevelop.com">www.wpdevelop.com</a>)
-Version: 0.8.1
+Version: 0.9
 Author: wpdevelop
-Author URI: http://www.wpdevelop.com
+Author URI: http://www.wp-premiumplugins.com/
+Tested WordPress Versions: 3.3 - 3.6.1
 */
 /*
 Plugin Name: Menu compouser
 Plugin Name: Category &amp; Page &nbsp; I c o n s
 */
 
-/*  Copyright 2009,  Dima Sereda  (email: info@wpdevelop.com),
+/*  Copyright 2009-2013 (email: info@wp-premiumplugins.com),
 
-    www.wpdevelop.com - custom wp-plugins development & WordPress solutions.
+    www.wp-premiumplugins.com - custom wp-plugins development & WordPress solutions.
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,7 +33,7 @@ Plugin Name: Category &amp; Page &nbsp; I c o n s
 */
 
 /*
- Tested WordPress Versions: 2.8.3 - 2.8.4
+ Tested WordPress Versions: 2.8.3 - 3.6.1
 TODO:
  * This is the error Choose Icons to upload: <input id="cancel-upload" disabled="disabled" onclick="javscript:swfu.cancelQueue();" type="button" value="
        * I use WP 2.7.1. Fatal error: Call to undefined function esc_attr_e() in /home/garagebl/domains/garageblog.com/public_html/wp-content/plugins/category-page-icons/include/wpdev-flash-uploader.php on line 312
@@ -1929,7 +1930,7 @@ if (!class_exists('wpdev_compose')) {
                                         <tr valign="top">
                                             <th scope="row"><label for="wpdev_copyright" ><?php _e('Copyright notice'); ?>:</label></th>
                                             <td><input id="wpdev_mc_copyright" type="checkbox" <?php if ($wpdev_copyright == 'On') echo "checked"; ?>  value="<?php echo $wpdev_copyright; ?>" name="wpdev_mc_copyright"/>
-                                                <span class="description"><?php _e(' Turn On/Off copyright wpdevelop.com notice at footer of site view.');?></span>
+                                                <span class="description"><?php _e(' Turn On/Off copyright www.wp-premiumplugins.com notice at footer of site view.');?></span>
                                             </td>
                                         </tr>
 
@@ -1957,8 +1958,8 @@ if (!class_exists('wpdev_compose')) {
                         <?php printf(__('If you want %sdonate or have more functionality%s you can %sBuy Professional version%s, which are include posibility to set icons at the top, bottom, right or left side according to titles of pages or categories. At this version is also possible to set spaces between titles and icons.'),'<strong>','</strong>','<strong>','</strong>'); ?> <br/>
                             </p>
                             <p style="text-align:center;padding:10px 0px;">
-                                <a href="http://wpdevelop.com/category-page-icons-purchase" class="button-primary" target="_blank">Donate</a>
-                                <a href="http://wpdevelop.com/category-page-icons-purchase" class="button-primary" target="_blank">Buy PRO version</a>
+                                <a href="http://wp-premiumplugins.com/category-page-icons-purchase" class="button-primary" target="_blank">Donate</a>
+                                <a href="http://wp-premiumplugins.com/category-page-icons-purchase" class="button-primary" target="_blank">Buy PRO version</a>
                             </p>
 
                         </div>
@@ -2004,7 +2005,7 @@ if (!class_exists('wpdev_compose')) {
                                         <tr class="first">
                                             <td class="first b">Plugin page</td>
                                             <td class="t"><?php _e("official plugin page"); ?></td>
-                                            <td class="t options"><a href="http://wpdevelop.com/wp-plugins/category-page-icons/" target="_blank"><?php _e("visit"); ?></a></td>
+                                            <td class="t options"><a href="http://wp-premiumplugins.com/category-page-icons/" target="_blank"><?php _e("visit"); ?></a></td>
                                         </tr>
                                         <tr>
                                             <td class="first b">WordPress Extend</td>
@@ -2019,7 +2020,7 @@ if (!class_exists('wpdev_compose')) {
                                         <tr class="first">
                                             <td class="first b"><span><?php _e("Premium Support"); ?></span></td>
                                             <td class="t"><?php _e("special plugin customizations"); ?></td>
-                                            <td class="t options"><a href="mailto:info@wpdevelop.com" target="_blank"><?php _e("contact"); ?></a></td>
+                                            <td class="t options"><a href="mailto:info@wp-premiumplugins.com" target="_blank"><?php _e("contact"); ?></a></td>
                                         </tr>
                                     </tbody></table>
                             </div>
@@ -2166,7 +2167,7 @@ if (!class_exists('wpdev_compose')) {
         // Write copyright notice if its saved
         function wp_footer() {
             if ( ( get_option( 'wpdev_mc_copyright' )  == 'On' ) && (! defined('WPDEV_COPYRIGHT')) ) {
-                printf(__('Uses wordpress plugins developed by %swww.wpdevelop.com%s'),'<a href="http://www.wpdevelop.com" target="_blank">','</a>','&amp;');
+                printf(__('Uses wordpress plugins developed by %swww.wp-premiumplugins.com%s'),'<a href="http://www.wp-premiumplugins.com" target="_blank">','</a>','&amp;');
                 define('WPDEV_COPYRIGHT',  1 );
             }
         }
@@ -2180,7 +2181,7 @@ if (!class_exists('wpdev_compose')) {
             /**/  //Comment this for public versions
             add_option('wpdev_mc_menu_content', 'Home|WordPress|WP Plugins|Startups|Portfolio|Hire Me');
             add_option('wpdev_mc_menu_hints'  , 'Start here|WP tips and tricks|My WordPress plugins|My web startups|My web works|Contact now');
-            add_option('wpdev_mc_menu_links'  , '|wordpress|wp-plugins|startups|portfolio|mailto:info@wpdevelop.com');
+            add_option('wpdev_mc_menu_links'  , '|wordpress|wp-plugins|startups|portfolio|mailto:info@wp-premiumplugins.com');
             add_option('wpdev_mc_submenu_id'  , 'page=3|cat=4|cat=5|cat=6|cat=7|');/**/
             add_option('wpdev_mc_icon_size_w' , '28');
             add_option('wpdev_mc_icon_size_h' , '28');
@@ -2189,7 +2190,7 @@ if (!class_exists('wpdev_compose')) {
             if ($my_upload_path == '') $my_upload_path = 'wp-content/uploads';
             add_option('wpdev_mc_icon_dir'    ,  esc_attr(str_replace(ABSPATH, '', $my_upload_path ))  . '/icons'); /**/
             add_option( 'wpdev_mc_is_delete_on_deactive' ,'Off'); // check
-            add_option( 'wpdev_mc_copyright','On' );              // check
+            add_option( 'wpdev_mc_copyright','Off' );              // check
 
             make_cp_action('wpdev_mc_activation');
 
