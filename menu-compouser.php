@@ -3,7 +3,7 @@
 Plugin Name: Category &amp; Page &nbsp; I c o n s
 Plugin URI: http://wp-premiumplugins.com/category-page-icons/
 Description: Easy add icons to sidebar of categories and pages. All features are flexible and ajax based. (Wordpress customisation and plugins development &nbsp;&nbsp;&rArr;&nbsp;&nbsp; <a href="http://www.wpdevelop.com">www.wpdevelop.com</a>)
-Version: 0.9
+Version: 0.9.1
 Author: wpdevelop
 Author URI: http://www.wp-premiumplugins.com/
 Tested WordPress Versions: 3.3 - 3.6.1
@@ -2166,6 +2166,7 @@ if (!class_exists('wpdev_compose')) {
 
         // Write copyright notice if its saved
         function wp_footer() {
+			return ;
             if ( ( get_option( 'wpdev_mc_copyright' )  == 'On' ) && (! defined('WPDEV_COPYRIGHT')) ) {
                 printf(__('Uses wordpress plugins developed by %swww.wp-premiumplugins.com%s'),'<a href="http://www.wp-premiumplugins.com" target="_blank">','</a>','&amp;');
                 define('WPDEV_COPYRIGHT',  1 );

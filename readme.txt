@@ -4,7 +4,7 @@ Donate link: http://www.wp-premiumplugins.com/category-page-icons/
 Tags: category icons, page icons, icons, pictures, category, page, pages, sidebar, widgets, widget icons, menu icons
 Requires at least: 2.7
 Tested up to: 3.6.1
-Stable tag: 0.9
+Stable tag: 0.9.1
 
 Easy add icons to sidebar of categories and pages. All features are flexible and ajax based.
 == Description ==
@@ -48,6 +48,8 @@ Yes
 6. screenshot-5.png
 
 == Changelog ==
+= 0.9.1 =
+ * Turn Off possibility to show "powered by" message. Now its not possible to  show this message at all, even if the visitor will activate it in the settings.
 = 0.9 =
  * Fixed issue of not showing Upload button.
 = 0.8.1 = 
