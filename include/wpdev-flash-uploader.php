@@ -5,6 +5,8 @@
  * @package WordPress
  * @subpackage Administration
  */
+    // Exit if accessed directly
+    if ( ! defined( 'ABSPATH' ) ) die('<h3>Direct access to this file do not allow!</h3>');
 
      /*
      // Init refactoring for home computer

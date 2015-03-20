@@ -3,7 +3,7 @@
 Plugin Name: Category &amp; Page &nbsp; I c o n s
 Plugin URI: http://wp-premiumplugins.com/category-page-icons/
 Description: Easy add icons to sidebar of categories and pages. All features are flexible and ajax based. (Wordpress customisation and plugins development &nbsp;&nbsp;&rArr;&nbsp;&nbsp; <a href="http://www.wpdevelop.com">www.wpdevelop.com</a>)
-Version: 0.9.1
+Version: 0.9.2
 Author: wpdevelop
 Author URI: http://www.wp-premiumplugins.com/
 Tested WordPress Versions: 3.3 - 3.6.1
@@ -14,8 +14,6 @@ Plugin Name: Category &amp; Page &nbsp; I c o n s
 */
 
 /*  Copyright 2009-2013 (email: info@wp-premiumplugins.com),
-
-    www.wp-premiumplugins.com - custom wp-plugins development & WordPress solutions.
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,60 +30,8 @@ Plugin Name: Category &amp; Page &nbsp; I c o n s
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-/*
- Tested WordPress Versions: 2.8.3 - 3.6.1
-TODO:
- * This is the error Choose Icons to upload: <input id="cancel-upload" disabled="disabled" onclick="javscript:swfu.cancelQueue();" type="button" value="
-       * I use WP 2.7.1. Fatal error: Call to undefined function esc_attr_e() in /home/garagebl/domains/garageblog.com/public_html/wp-content/plugins/category-page-icons/include/wpdev-flash-uploader.php on line 312
- * I like you plugin much, but is it possible that it does not work with multi-language plugin WPML? Cause my german (original) pages work fine with the icons but I can’t bind them to the english page titles.
-
-Change log:
-= 0.8 =
- * Showing all icons from apload icosn folder, do not apply size icons filter now.
- * Fixing HTTP Error, during upload icons, when icons size smaller, then width and height at settings.
-
-= 0.7 =
- * Fixing compatibility with WordPress 3.0.1 If you have problems of showing icons. Please go to the icons settings page and check this field: "Store uploads of icons in this folder:" its have to be like this wp-content/uploads/icons but not /icons
-
-= 0.6 =
- * Fixing error: Call to undefined function apply_bk_filter() in category-page-icons/menu-compouser.php on line 1360
-
-= 0.5 =
- * New Professional version (include features: Position of icons at top, bottom , right or left side according to titles of pages or categories.)
- * Fixing of issue of not showing progress bar during uploading
- * Fixing compatibility with WordPress 2.9 - 2.9.1
-= 0.4 =
- * Fixing of issue "Warning: is_dir() [function.is-dir]: open_basedir restriction in effect. File(/home) is not within the allowed path(s): (...) in .../wp-content/plugins/category-page-icons/menu-compouser.php on line 381"
-= 0.3 =
- * Fixing of issue of not showing categories and pages
-= 0.2 =
- * Fixing of issue of not showing (sometimes) icons after upload at the page and category section. ( Its was because of uploading smaller images, then sizes setted at the settings page.
-= 0.1 =
- * Auto inserting icons into sidebar
- * Icons assigning to Pages
- * Icons assigning to Categories
- * Settings page for configuration icons width,  height, crop option, icons folder and more...
- * Firefox support images showing at selectbar
- * PHP4 support
- * Ajax multiple adding images
- * Ajax deleting images
- 
-TODO: Make next default settingsvsaving:
- *
- * Footer copyright at admin and client side option
-        + Upload direcory entering (alredy option is exist)
-        + Saving or deleting data during deactivation
- * Make more correct view and magement at the page of menu compouse
- * Saving data which have to show at footer, { may be saving other data which can show at other places - like at header }
- * Saving CSS style and editing it from the file in settings page
-
-        + Add good icons to the admin pages
-        + Deleting images option at admin page
-        + Settings page for saving width height crop and icons dir
-        + Auto inserting icons to the standard sidebar for pages and categories ( and may be save some CSS data according this)
-        + Make public version of category and page-icons (may be post)
- *
-*/
+    // Exit if accessed directly
+    if ( ! defined( 'ABSPATH' ) ) die('<h3>Direct access to this file do not allow!</h3>');
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
